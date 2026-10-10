@@ -18,7 +18,17 @@ npm run build
 npm run preview
 ```
 
-`vite.config.js` использует относительный `base: './'`, поэтому результат из `dist/` корректно работает в подпапке GitHub Pages. Для публикации можно включить GitHub Actions или загрузить содержимое `dist/` в ветку/папку Pages.
+`vite.config.js` использует относительный `base: './'`, поэтому результат из `dist/` корректно работает в подпапке GitHub Pages.
+
+Для публикации в этом репозитории:
+
+1. Откройте **Settings → Pages → Build and deployment** и выберите **Source: GitHub Actions**.
+2. Отправьте изменения в ветку `main`. Workflow `.github/workflows/deploy.yml` установит зависимости, соберёт приложение и опубликует только содержимое `dist/`.
+3. Дождитесь успешного завершения **Deploy dashboard to GitHub Pages** на вкладке **Actions**. Повторную публикацию можно запустить вручную через **Run workflow**.
+
+Сайт: [peshexodka.github.io/week4_CU/](https://peshexodka.github.io/week4_CU/).
+
+Не используйте **Deploy from a branch → main → / (root)**: в корне лежит исходный `index.html` с подключением `/src/main.js`, а GitHub Pages не выполняет сборку Vite. Такой вариант даёт пустую страницу. Собирать приложение нужно до публикации; добавлять `dist/` в Git не требуется.
 
 ## Проверка данных
 
